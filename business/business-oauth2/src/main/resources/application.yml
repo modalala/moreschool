@@ -1,0 +1,42 @@
+spring:
+  application:
+    name: business-oauth2
+  main:
+    allow-bean-definition-overriding: true
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+  cloud:
+    nacos:
+      discovery:
+        server-addr: nacos.fosu666.com:80
+dubbo:
+  scan:
+    base-packages: com.fosu.study.business.controller, com.fosu.study.business.service
+  protocol:
+    name: dubbo
+    port: -1
+    serialization: kryo
+  registry:
+    address: nacos://nacos.fosu666.com
+    port: 80
+
+#开启Feign 的 OKHTTP方式
+feign:
+  okhttp:
+    enabled: true
+  httpclient:
+    enabled: false
+server:
+  port: 9001
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+business:
+  oauth2:
+    grant_type: password
+    client_id: client
+    client_secret: secret
